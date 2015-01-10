@@ -21,7 +21,14 @@ func handleLocPing(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func handleGetLocs(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "GET" {
+		fmt.Fprintf(w, getAllJSON())
+	}
+}
+
 func RunServer() {
 	http.HandleFunc("/location/ping", handleLocPing)
+	http.HandleFunc("/location/get", handleGetLocs)
 	http.ListenAndServe(":80", nil)
 }

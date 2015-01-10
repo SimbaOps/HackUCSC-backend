@@ -12,9 +12,9 @@ func init() {
 }
 
 type LocPing struct {
-	busId string
-	lat   float32
-	long  float32
+	BusId string  `json:"id"`
+	Lat   float32 `json:"lat"`
+	Long  float32 `json:"lon"`
 }
 
 var postChannel chan LocPing = make(chan LocPing)
@@ -44,6 +44,7 @@ func initPost(channel chan LocPing) {
 		if err != nil {
 			fmt.Println(conf, err)
 		}*/
+		postIM(loc)
 		fmt.Println(loc)
 	}
 }
@@ -51,4 +52,9 @@ func initPost(channel chan LocPing) {
 //Takes location object and update it in the DB
 func Post(loc LocPing) {
 	postChannel <- loc
+}
+
+//Gets location of the object with this objId
+func Get(id string) LocPing {
+	return getIM(id)
 }
