@@ -12,12 +12,13 @@ func handleLocPing(w http.ResponseWriter, r *http.Request) {
 		latStr := r.FormValue("lat")
 		longStr := r.FormValue("long")
 		busId := r.FormValue("id")
+		busType := r.FormValue("type")
 		lat, err := strconv.ParseFloat(latStr, 32)
 		long, err := strconv.ParseFloat(longStr, 32)
 		if err != nil {
 			fmt.Println("Error parsing float")
 		}
-		Post(LocPing{busId, float32(lat), float32(long)})
+		Post(LocPing{busId, float32(lat), float32(long), busType})
 	}
 }
 

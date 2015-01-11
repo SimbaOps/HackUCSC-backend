@@ -15,6 +15,7 @@ type LocPing struct {
 	BusId string  `json:"id"`
 	Lat   float32 `json:"lat"`
 	Long  float32 `json:"lon"`
+	Type  string  `json:"type"`
 }
 
 var postChannel chan LocPing = make(chan LocPing)
